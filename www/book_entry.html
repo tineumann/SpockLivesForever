@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Buch anlegen</title>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  </head>
+
+
+
+  <body>
+    <h1>Buch anlegen</h1>
+    <form action="http://martinakraus.net/createBookEntry.php" method="get" name="bookCreation">
+
+	<label for="titel">Titel des Buches</label><input type='text' class='field' name='titel' id='titel' placeholder=''/>
+
+	<label class="nodecoration" for="vorname">Ihr Vorname</label><input type='text' class='field' name='vorname' id='vorname' placeholder=''/><span class="fixfloat">&nbsp;</span>
+
+	<label for="autor">Buchautor</label><input type='text' class='field' name='autor' id='autor' placeholder=''/>
+	<label class="nodecoration" for="name">Ihr Nachname</label><input type='text' class='field' name='name' id='name' placeholder=''/><span class="fixfloat">&nbsp;</span>
+
+
+
+	<label for="isbn">ISBN</label><input type='number' class='field' name='isbn' id='isbn' placeholder=''/>
+       <label class="nodecoration" for="filmfavorit">Favorit markieren</label>
+        <input type="checkbox" name="filmfavorit" value="filmfavorit" id="filmfavorit"></select><span class="fixfloat">&nbsp;</span>
+
+
+ 
+
+
+	<label for="kapitel">Kapitel</label><input type='number' class='field' name='kapitel' id='kapitel' placeholder=''/><span class="fixfloat">&nbsp;</span>
+	<label for="jahr">Erscheinungsjahr</label><input type='number' class='field' name='jahr' id='jahr' placeholder=''/><span class="fixfloat">&nbsp;</span>
+	<label for="auflage">Auflage</label><input type='number' class='field' name='auflage' id='auflage' placeholder=''/><span class="fixfloat">&nbsp;</span>
+
+	<label for="art">Art des Buches</label><select name='art' id='art'>
+          <option value='ebook'>eBook</option>
+	  <option value='newspaper'>Newspaper</option>
+	  <option value='taschenbuch'>Taschenbuch</option>
+	  <option value='lexikon'>Lexikon</option>
+	  <option selected="selected" value='hardcover'>Hardcover</option>
+	  <option value='paperback'>Paperback</option></select><span class="fixfloat">&nbsp;</span>
+
+
+  <label>Genre</label>
+  <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="horror" id="check1" checked>Horror</label>
+          <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="doku" id="check4">
+          Doku</label><span class="fixfloat">&nbsp;</span>
+	<label>&nbsp;</label>
+          <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="psycho" id="check2">
+          Psycho</label>
+          <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="komoedie" id="check5">
+          Kom&ouml;die</label><span class="fixfloat">&nbsp;</span>
+	<label>&nbsp;</label>         
+	<label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="krimi" id="check3">
+          Krimi</label>
+        <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="romanze" id="check6">
+        Romanze</label><br/>
+
+
+
+ <input class ="btn" type="submit" value="Absenden"/>
+    </form>
+
+
+  </body>
+
+
+
+</html>
