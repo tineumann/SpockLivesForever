@@ -22,7 +22,6 @@ input {
 
 h1 {
 	font-size:22px;
-  	margin-left:160px;
   	color:#3F48CC;
   	margin-bottom:65px; 
 }
@@ -126,7 +125,6 @@ img.logo_format {
 }
 
 .btn_format {
-  	display:none;
   	position:absolute;
   	width:178px;
   	left: 50%;
