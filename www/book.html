@@ -10,13 +10,14 @@
   </head>
 
   <body>
-    <center><h1>Meine B&uuml;cher</h1>
-	<table style="border:solid; width:1000px; text-align:center; cursor:pointer;">
+    <div style="text-align:center"><h1>Meine B&uuml;cher</h1></div>
+	<table id="bookTab">
 	  <tr>
-	    <th style="background-color: #3F48CC;" id="horror" name="horror" onClick="tab_horror_switcher()">Horror</th>
-		<th style="background-color: #0000FF;" id="roman" name="roman" onClick="tab_roman_switcher()">Roman</th>
+	    <th style="background-color: #3F48CC;" id="horror" onClick="tab_horror_switcher()">Horror</th>
+		<th style="background-color: #0000FF;" id="roman"  onClick="tab_roman_switcher()">Roman</th>
 	  </tr>
 	</table>
+	
 	
 	  <br />
 	  <br />
@@ -32,6 +33,5 @@
 		json_load(object_roman);
 	</script>
 	</div>
-	</center>
   </body>
 </html>

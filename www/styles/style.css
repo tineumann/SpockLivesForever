@@ -23,7 +23,7 @@ input {
 h1 {
 	font-size:22px;
   	color:#3F48CC;
-  	margin-bottom:65px; 
+  	margin-bottom:50px; 
 }
 
 h2 {
@@ -94,7 +94,7 @@ label.nodecoration {
   	text-decoration: none;
 }
 
-img.logo_format {
+#logo_format {
 	border-color: #3F48CC;
   	border-width: 10px;
   	border-style: solid;
@@ -124,12 +124,34 @@ img.logo_format {
   	text-decoration: none;
 }
 
-.btn_format {
+#btn_format {
   	position:absolute;
   	width:178px;
   	left: 50%;
   	top:400px;
   	margin-left:-89px;
+}
+
+#btn_format a div{
+  	text-align:center;
+  	margin-top:10px;
+  	margin-bottom:10px;
+  	-webkit-border-radius: 4;
+  	-moz-border-radius: 4;
+  	border-radius: 4px;
+  	width:160px;
+  	font-family: Arial;
+  	color: #000;
+  	font-size: 22px;
+  	background: #00A2E8;
+  	padding: 7px 7px 7px 7px;
+  	border: solid #3F48CC 2px;
+  	text-decoration: none;
+}
+
+#btn_format a div:hover{
+  	background: #3F48CC;
+  	text-decoration: none;
 }
 
 .logo {
@@ -147,5 +169,33 @@ a {
   	font-size:18px;
   	color: #000;
   	text-decoration:none;
+}
+
+
+.bookInventory {
+	margin-left:auto; 
+    margin-right:auto;
+	border-collapse:collapse;
+}
+
+.bookInventory  tr, td {
+	border: 4px solid #3F48CC;
+	text-align:center;
+	color:#7300FF;
+}
+
+.bookInventory th {
+	border: 4px solid #3F48CC;
+	color:#000;
+}
+
+#bookTab {
+	margin-left:auto; 
+    margin-right:auto;
+	border:4px solid #3F48CC;
+	width:1000px;
+	text-align:center;
+	cursor:pointer;
+	border-collapse:collapse;
 }
 

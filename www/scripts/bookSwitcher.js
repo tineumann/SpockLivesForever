@@ -26,11 +26,11 @@ function tab_roman_switcher() {
 
 /**
  * Die Tabelle mit dem jeweiligen JSON Objekt wird angelegt.
- * Abhängig vom uebergebnenen JSON book object (aktuell moeglich: Roman, Horror)
+ * Abhängig vom uebergebenen JSON book object (aktuell moeglich: Roman, Horror)
  */
 function json_load(json_obj) {
 	var i = 0;
-	document.writeln("<table border='2'><tr>");
+	document.writeln("<table class='bookInventory'><tr>");
 	document.writeln("<th>Autor</th><th>Titel</th><th>Kapitel</th><th>Art des Buches</th><th>ISBN</th><th>Erscheinungsjahr</th><th>Auflage</th></tr>");
 
 	for(i=0;i<json_obj.bookdata.length;i++)
