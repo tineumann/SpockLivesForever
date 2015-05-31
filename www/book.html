@@ -5,11 +5,9 @@
     <title>Meine B&uuml;cher</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <script src="scripts/bookSwitcher.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="scripts/json/horror_books.json"></script>
-	<script type="text/javascript" src="scripts/json/roman_books.json"></script>
   </head>
 
-  <body>
+  <body onload="initialize();">
     <div style="text-align:center"><h1>Meine B&uuml;cher</h1></div>
 	<table id="bookTab">
 	  <tr>
@@ -22,16 +20,7 @@
 	  <br />
 	  <br />
 
-	  <div id="tab_horror">
-	  <script type="text/javascript">
-		json_load(object_horror);
-		</script>
-		</div>
-		
-	  <div style="display:none" id="tab_roman">
-	  <script type="text/javascript">
-		json_load(object_roman);
-	</script>
+	  <div id="inventoryTable"><!-- Inhalt wird geladen --></div>
 	</div>
   </body>
 </html>

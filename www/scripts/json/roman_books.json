@@ -1,6 +1,4 @@
-ï»¿//read JSON data: http://www.w3schools.com/json/json_example.asp 
-
-var object_roman = {
+{
 "bookdata": [
 	{
 	"autor": "Paulo Coelho",
@@ -12,7 +10,7 @@ var object_roman = {
 	"auflage": 3
 	},
 	{
-	"autor": "Friedrich DÃ¼rrenmatt",
+	"autor": "Friedrich Dürrenmatt",
 	"titel": "Die Physiker", 
 	"kapitel": 2,
 	"buchart": "Taschenbuch",
@@ -49,7 +47,7 @@ var object_roman = {
 	},
 	{
 	"autor": "Hermann Hesse",
-	"titel": "Wer lieben kann, ist glÃ¼cklich",
+	"titel": "Wer lieben kann, ist glücklich",
 	"kapitel": 22,
 	"buchart": "Hardcover",
 	"ISBN": 9783518033863,
@@ -58,7 +56,7 @@ var object_roman = {
 	},
 	{
 	"autor": "Hermann Hesse",
-	"titel": "Eigensinn macht SpaÃŸ",
+	"titel": "Eigensinn macht Spaß",
 	"kapitel": 11,
 	"buchart": "Hardcover",
 	"ISBN": 9783518035856,
