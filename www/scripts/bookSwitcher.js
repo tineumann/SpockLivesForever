@@ -48,7 +48,19 @@ function showJSON(data) {
 	}
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4 && ajax.status==200) {
-			document.getElementById("inventoryTable").innerHTML=ajax.responseText;
+			jsonString=ajax.responseText;
+			jsonObj = JSON.parse(jsonString);
+			
+			jsonHTMLFormat = "<table class='bookInventory'><tr><th>Autor</th><th>Titel</th><th>Kapitel</th><th>Art des Buches</th><th>ISBN</th><th>Erscheinungsjahr</th><th>Auflage</th></tr>";
+			for(i=0;i<jsonObj.bookdata.length;i++) {
+				jsonHTMLFormat=jsonHTMLFormat + "<tr><td>"+ jsonObj.bookdata[i].autor+"</td><td>"+ jsonObj.bookdata[i].titel+"</td><td>"+ jsonObj.bookdata[i].kapitel+"</td><td>"+ jsonObj.bookdata[i].buchart+"</td><td>"+ jsonObj.bookdata[i].ISBN+"</td><td>"+ jsonObj.bookdata[i].erscheinungsjahr+"</td><td>"+ jsonObj.bookdata[i].auflage+"</td></tr>";
+
+			}
+			jsonHTMLFormat=jsonHTMLFormat + "</table>";
+			document.getElementById("inventoryTable").innerHTML=jsonHTMLFormat;
+		
+
+
 		}
 	}
   
