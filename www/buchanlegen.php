@@ -1,6 +1,8 @@
 <?php
+
 // Einbinden wichtiger Funktionen
-include ("includes/functions.inc.php");
+// include ("includes/functions.inc.php");
+include_once ("includes/db_connect.php");
 
 // $message = "";
 
@@ -20,18 +22,9 @@ if (isset ( $_POST ['autor'], $_POST ['titel'], $_POST ['kapitel'], $_POST ['art
 	// Speichere alle Variablen in einer 
 	$inhalt = $autor.', '.$titel.', '.$kapitel.' Kapitel, '.$art.', '.$isbn.', '.$jahr.', '.$auflage.'. Auflage';
 
-	// Falls die hinzuzufuegenden Daten bereits in der Datei existieren, werden diese nicht mehr hinzugefuegt.
-/*	if (!istDuplikat ($datei, $inhalt)) {
-		$inhalt .= ";\r\n\r\n"; 
-		file_put_contents($datei, $inhalt, FILE_APPEND);
-		echo "Das Buch wurde erfolgreich hinzugef&uuml;gt.";
-	} else {
-		echo "Buch existiert bereits und werde deshalb nicht hinzugef&uuml;gt.";
-	} */
-
 	$inhalt .= ";\r\n\r\n"; 
 	file_put_contents($datei, $inhalt, FILE_APPEND);
-	echo "Das Buch wurde erfolgreich hinzugef&uuml;gt.";
+	echo "Das Buch wurde erfolgreich hinzugef&uuml;gt. <a href='book_entry.html'>Zur&uuml;ck zur vorherigen Seite.</a>";
 
 }
 
