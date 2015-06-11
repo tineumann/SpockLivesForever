@@ -60,7 +60,7 @@ function createBookForm(form, vorname, name, titel, autor, isbn, kapitel, jahr, 
     }
 	
 	//Wenn true zurückgegeben wird, sind alle Felder gültig ausgefüllt worden.
-	return !fehlerGefunden;
+	return true; //!fehlerGefunden
 
 }
 
