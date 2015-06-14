@@ -40,7 +40,7 @@ function showJSON(data) {
 	if (data=="") {
 		document.getElementById("inventoryTable").innerHTML="";
 		return;
-	} 
+	}
 	if (window.XMLHttpRequest) {
 		ajax=new XMLHttpRequest();
 	} else {  // old browser compatibility (IE5, IE6)
@@ -49,23 +49,19 @@ function showJSON(data) {
 	ajax.onreadystatechange=function() {
 		if (ajax.readyState==4 && ajax.status==200) {
 			jsonString=ajax.responseText;
-			
 			jsonHTMLFormat = "<table class='bookInventory'><tr><th>Autor</th><th>Titel</th><th>Kapitel</th><th>Art des Buches</th><th>ISBN</th><th>Erscheinungsjahr</th><th>Auflage</th></tr>";
-			if (jsonString != "") {
+			if (jsonString != '' && jsonString.search("titel") != -1) {
 				jsonObj = JSON.parse(jsonString);
 			
 				for(i=0;i<jsonObj.bookdata.length;i++) {
-					jsonHTMLFormat=jsonHTMLFormat + "<tr><td>"+ jsonObj.bookdata[i].autor+"</td><td>"+ jsonObj.bookdata[i].titel+"</td><td>"+ jsonObj.bookdata[i].kapitel+"</td><td>"+ jsonObj.bookdata[i].buchart+"</td><td>"+ jsonObj.bookdata[i].ISBN+"</td><td>"+ jsonObj.bookdata[i].erscheinungsjahr+"</td><td>"+ jsonObj.bookdata[i].auflage+"</td></tr>";
-
+					jsonHTMLFormat=jsonHTMLFormat + "<tr><td>" + jsonObj.bookdata[i].autor + "</td><td>" + jsonObj.bookdata[i].titel + "</td><td>" + jsonObj.bookdata[i].kapitel + "</td><td>" + jsonObj.bookdata[i].buchart + "</td><td>" + jsonObj.bookdata[i].isbn + "</td><td>" + jsonObj.bookdata[i].erscheinungsjahr + "</td><td>" + jsonObj.bookdata[i].auflage + "</td></tr>";
 				}
 			} else {
 				jsonHTMLFormat=jsonHTMLFormat + "<tr><td colspan='7'>Zu dieser Genre sind keine B&uuml;cher vorhanden oder die Genre ist ungültig.</td></tr>";
-			}
+			} 
 			
 			jsonHTMLFormat=jsonHTMLFormat + "</table>";
-			document.getElementById("inventoryTable").innerHTML=jsonHTMLFormat;
-		
-
+			document.getElementById("inventoryTable").innerHTML=jsonHTMLFormat; // jsonHTMLFormat
 
 		}
 	}

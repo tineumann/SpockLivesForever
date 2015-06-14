@@ -1,24 +1,24 @@
 <?php
-function istDuplikat ($datei, $inhalt)
+
+/**
+ * Diese Funktion erstellt eine json-parsingfaehige Buchdatei
+ *
+ * @param String $content    Das SQL-Ergebnis der Buechersammlung einer Genre
+ *
+ * @return String $json;
+ */
+
+function getBookJsonStructure($content)
 {
-	$inhalt = preg_replace("/\r|\n/s", "", $inhalt);
-	$inhalt = rtrim($inhalt);
-	$datei = fopen($datei,"r");
+	$jsonString = '{ "bookdata": [ ';
+        while ($row = $content->fetch_assoc()) {
+		$jsonString=$jsonString.'{ "autor": "'.$row["autor"].'", "titel": "'.$row["titel"].'", "kapitel": '.$row["kapitel"].', "buchart": "'.$row["buchart"].'", "isbn": '.$row["isbn"].', "erscheinungsjahr": '.$row["erscheinungsjahr"].', "auflage": '.$row["auflage"].' }, ';
+        }
 
-	while(!feof($datei))
-  	{
-		$aktuelleZeile = fgets($datei);
-		$aktuelleZeile = preg_replace("/\r|\n/s", "", $aktuelleZeile);
-		$aktuelleZeile = rtrim($aktuelleZeile);
+	$jsonString = substr($jsonString, 0, -2);
+	$jsonString = $jsonString.' ] }';
 
-
-		if (strcmp($aktuelleZeile, $inhalt) == 0) {
-			fclose($datei);
-			return true;
-		}
-  	}
-	fclose($datei);
-
-	return false;
+	return $jsonString;
 }
+
 ?>
