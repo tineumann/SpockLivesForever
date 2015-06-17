@@ -56,46 +56,68 @@ if (!preg_match($regex, $auflage) || $auflage{0} == 0 || $jahr=="") {
 	$auflage="";
 }
 
-// Ueberpruefung, ob der Benutzer bereits ein identisches Buch angelegt hat.
-// Dies wird anhand der Benutzerinformationen und der ISBN-Nummer ueberprueft.
-$prep_stmt = "SELECT ID FROM books WHERE (vorname = ? AND nachname = ? AND isbn = ?) LIMIT 1";
-$stmt = $mysqli->prepare ( $prep_stmt );
 
-if ($stmt) {
-	$stmt->bind_param ( 'sss', $vorname, $nachname, $isbn );
+
+// Ueberpruefung, ob der Benutzer existiert. Wenn NEIN - neuer Benutzer wird angelegt.
+// $user_id von bestehendem oder neuem User wird gespeichert
+
+$prep_stmt = "SELECT ID FROM user WHERE (vorname = ? AND nachname = ?) LIMIT 1";
+$stmt = $mysqli->prepare ( $prep_stmt );
+$stmt->bind_param ( 'ss', $vorname, $nachname );
+$stmt->execute ();
+$stmt->store_result ();
+
+if ($stmt->num_rows == 1) {
+	$stmt->bind_result($user_id);
+	$stmt->fetch();
+	$stmt->close();
+} else {
+	$insert_stmt = $mysqli->prepare ( "INSERT INTO user (vorname, nachname) VALUES (?, ?)" );
+	$insert_stmt->bind_param ( 'ss', $vorname, $nachname);
+	$insert_stmt->execute ();
+	$insert_stmt->close();
+
+	$stmt = $mysqli->prepare ( $prep_stmt );
+	$stmt->bind_param ( 'ss', $vorname, $nachname );
 	$stmt->execute ();
 	$stmt->store_result ();
-		
-	if ($stmt->num_rows == 1) {
-		// Der Benutzer hat bereits ein identisches Buch angelegt
-		echo ("Der Benutzer hat bereits ein identisches Buch angelegt");
-		
-		// Aktualisiere den Favoritstatus
-		if ($update_stmt = $mysqli->prepare ( "UPDATE books SET favorit = ? WHERE (vorname = ? AND nachname = ? AND isbn = ?)" )) {
-			$update_stmt->bind_param ( 'ssss', $favorit, $vorname, $nachname, $isbn );
-			// Führe die vorbereitete Anfragen aus.
-			if (! $update_stmt->execute ()) {
 
-				// Im Fehlerfalle versuchen alle vorbereiteten Statements zu schließen und die DB-Verbindung zu trennen
-				mysqli_close($mysqli);
-				$update_stmt->close();
-				header ( 'Location: ../error.php?err=UPDATE_STATEMANT_FAIL' );
-			}
-		}
-		$update_stmt->close();
-	} else  {
-		// Speichere die eingegebenen Buchinformationen in der Datenbank
-		if ($insert_stmt = $mysqli->prepare ( "INSERT INTO books (vorname, nachname, autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, genre, favorit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" )) {
-			$insert_stmt->bind_param ( 'sssssssssss', $vorname, $nachname, $autor, $titel, $kapitel, $art, $isbn, $jahr, $auflage, $genre, $favorit);
-			// Führe die vorbereitete Anfragen aus.
-			if (! $insert_stmt->execute ()) {
-				$insert_stmt->close();
-				mysqli_close($mysqli);
-				header ( 'Location: ../error.php?err=INSERT_STATEMANT_FAIL' );
-			}
-		}
-		$insert_stmt->close();
+	if ($stmt->num_rows == 1) {
+		$stmt->bind_result($user_id);
+		$stmt->fetch();
 	}
+	$stmt->close();
+}
+
+
+
+// Ueberpruefung, ob der User dieses Buch bereits angelegt hat.
+// Wenn JA - Das einzgie was passiert, dass der Favoritstatus überschrieben wird. --> Somit nachträgliches Ändern des Favoritenstatus möglich
+// Wenn NEIN - Zwischentabelle hasbook wird gefüllt.
+
+$prep_stmt = "SELECT book_id FROM hasbook WHERE (user_id = ? AND book_id = ?) LIMIT 1";
+$stmt = $mysqli->prepare ( $prep_stmt );
+$stmt->bind_param ( 'ss', $user_id, $isbn );
+$stmt->execute ();
+$stmt->store_result ();
+
+if($stmt->num_rows == 1) {
+
+	$update_stmt = $mysqli->prepare ( "UPDATE hasbook SET favorit = ? WHERE (user_id = ? AND book_id = ?)" );
+	$update_stmt->bind_param ( 'sss', $favorit, $user_id, $isbn);
+	$update_stmt->execute ();
+	$update_stmt->close();
+
+} else {
+	
+	$insert_stmt = $mysqli->prepare ( "INSERT INTO books (autor, titel, kapitel, buchart, isbn, erscheinungsjahr, auflage, genre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" );
+	$insert_stmt->bind_param ( 'ssssssss', $autor, $titel, $kapitel, $art, $isbn, $jahr, $auflage, $genre);
+	$insert_stmt->execute ();
+
+	$insert_stmt = $mysqli->prepare ( "INSERT INTO hasbook (user_id, book_id, favorit) VALUES (?, ?, ?)" );
+	$insert_stmt->bind_param ( 'sss', $user_id, $isbn, $favorit);
+	$insert_stmt->execute ();
+	$insert_stmt->close();
 }
 
 mysqli_close($mysqli);

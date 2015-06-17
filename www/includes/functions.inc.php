@@ -18,6 +18,8 @@ function getBookJsonStructure($content)
 	$jsonString = substr($jsonString, 0, -2);
 	$jsonString = $jsonString.' ] }';
 
+	$jsonString = utf8_encode( $jsonString );
+
 	return $jsonString;
 }
 

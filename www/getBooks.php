@@ -31,24 +31,6 @@ if (isset ( $_GET["json"] ) AND strlen($_GET["json"])>3) {
 		// Dadurch parsen in bookSwitcher.js moeglich
 		echo getBookJsonStructure($result);
     	}
-
-
-	/* Milestone 5 - ersetzt mit PHP - 06-10-2015
-
-	// Pfad zur JSON Objekt-Datei
-	 * $filename = 'scripts/json/'.$json.'_books.json';
-	 * $json_test = file_get_contents($filename);
-	 * $json_test = utf8_encode($json_test); 
-	 * echo $json_test;
-
-	// Daten werden ausgewertet und JSON-Datei wird ausgegeben. Im Fehlerfalle wird ein leerer String ausgeworfen
-	 * if (file_exists($filename)) {
-	 *	$json_obj = file_get_contents($filename);
-	 *	$json_obj = utf8_encode($json_obj); 
-	 *	echo $json_obj;
-	 * } else {
-	 *	echo("");
-	}*/
 }
 
 ?>

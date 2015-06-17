@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Buch anlegen</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script type="text/JavaScript" src="scripts/forms.js"></script> 
+  </head>
+
+  <body>
+    <h1>Buch anlegen</h1>
+
+    <form action="buchanlegen.php" method="POST" name="bookCreation">
+	  <label for="titel">Titel des Buches</label><input type='text' class='field' name='titel' id='titel' placeholder='' required/>
+	  <label class="nodecoration" for="vorname">Ihr Vorname</label><input type='text' class='field' name='vorname' id='vorname' placeholder='' required/><span class="float_format">&nbsp;</span>
+	  <label for="autor">Buchautor</label><input type='text' class='field' name='autor' id='autor' placeholder='' required/>
+	  <label class="nodecoration" for="name">Ihr Nachname</label><input type='text' class='field' name='name' id='name' placeholder='' required/><span class="float_format">&nbsp;</span>
+	  <label for="isbn">ISBN</label><input type='tel' class='field' name='isbn' id='isbn' placeholder='' required/>
+      <label class="nodecoration" for="filmfavorit">Favorit markieren</label>
+      <input type="checkbox" name="filmfavorit" value="filmfavorit" id="filmfavorit"><span class="float_format">&nbsp;</span>
+	  <label for="kapitel">Kapitel</label><input type='number' class='field' name='kapitel' id='kapitel' placeholder='' required/><span class="float_format">&nbsp;</span>
+	  <label for="jahr">Erscheinungsjahr</label><input type='tel' class='field' name='jahr' id='jahr' placeholder='' required/><span class="float_format">&nbsp;</span>
+	  <label for="auflage">Auflage</label><input type='tel' class='field' name='auflage' id='auflage' placeholder='' required/><span class="float_format">&nbsp;</span>
+	  <label for="art">Art des Buches</label><select name='art' id='art'>
+        <option value='eBook'>eBook</option>
+	    <option value='Newspaper'>Newspaper</option>
+	    <option value='Taschenbuch'>Taschenbuch</option>
+	    <option value='Lexikon'>Lexikon</option>
+	    <option selected="selected" value='Hardcover'>Hardcover</option>
+	    <option value='Paperback'>Paperback</option></select><span class="float_format">&nbsp;</span>
+      <label>Genre</label>
+      <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="horror" id="check1" checked>Horror</label>
+      <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="doku" id="check4">Doku</label><span class="float_format">&nbsp;</span>
+      <label>&nbsp;</label>
+      <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="psycho" id="check2">Psycho</label>
+      <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="komoedie" id="check5">Kom&ouml;die</label><span class="float_format">&nbsp;</span>
+      <label>&nbsp;</label>         
+      <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="krimi" id="check3">Krimi</label>
+      <label style="color:#000" class="nodecoration"><input class ="checkbox_format" type="checkbox" name="genre" value="romanze" id="check6">Romanze</label><br/>
+      <input class ="btn" type="submit" value="Absenden" onclick="return createBookForm(this.form, this.form.vorname, this.form.name, this.form.titel, this.form.autor, this.form.isbn, this.form.kapitel, this.form.jahr, this.form.auflage);"/>
+    </form>
+  </body>
+
+</html>
